@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +7,20 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private actionSheet: ActionSheetController) {}
+  constructor(
+    private actionSheet: ActionSheetController,
+    private alertController: AlertController
+  ) {}
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Sub alert',
+      message: 'This is the alert message',
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheet.create({
